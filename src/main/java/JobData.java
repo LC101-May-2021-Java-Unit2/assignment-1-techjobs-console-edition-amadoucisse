@@ -105,11 +105,13 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
             for (Map.Entry<String, String> column : row.entrySet()) {
                 String searchOne = column.getKey();
-                String searchTwo = column.getKey();
-                searchOne = searchOne.toLowerCase();
-                searchTwo = searchTwo.toLowerCase();
-                if (searchOne.contains(value) || searchTwo.contains(value)) {
+                if (column.getValue().toLowerCase().contains(value.toLowerCase())) {
                     jobs.add(row);
+//                String searchTwo = column.getKey();
+//                searchOne = searchOne.toLowerCase();
+//                searchTwo = searchTwo.toLowerCase();
+//                if (searchOne.contains(value) || searchTwo.contains(value)) {
+//                    jobs.add(row);
                     break;
                 }
             }
