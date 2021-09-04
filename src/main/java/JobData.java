@@ -55,7 +55,7 @@ public class JobData {
         loadData();
 
         // Bonus mission; normal version returns allJobs
-        return allJobs;
+        return new ArrayList<>(allJobs);
     }
 
     /**
@@ -110,6 +110,7 @@ public class JobData {
                 searchTwo = searchTwo.toLowerCase();
                 if (searchOne.contains(value) || searchTwo.contains(value)) {
                     jobs.add(row);
+                    break;
                 }
             }
         }
