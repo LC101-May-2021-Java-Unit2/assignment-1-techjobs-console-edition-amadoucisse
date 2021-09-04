@@ -5,7 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -77,11 +77,10 @@ public class JobData {
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
         for (HashMap<String, String> row : allJobs) {
-            String aValue = row.get(column);
-            aValue = aValue.toLowerCase();
-            value = value.toLowerCase();
 
-            if (aValue.contains(value)) {
+            String aValue = row.get(column);
+
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
         }
@@ -100,20 +99,14 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        // TODO - implement this method
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
-        for (HashMap<String, String> row : allJobs) {
-            for (Map.Entry<String, String> column : row.entrySet()) {
-                String searchOne = column.getKey();
-                if (column.getValue().toLowerCase().contains(value.toLowerCase())) {
-                    jobs.add(row);
-//                String searchTwo = column.getKey();
-//                searchOne = searchOne.toLowerCase();
-//                searchTwo = searchTwo.toLowerCase();
-//                if (searchOne.contains(value) || searchTwo.contains(value)) {
-//                    jobs.add(row);
-                    break;
-                }
+        if (!value.equals("")) {
+            for (HashMap<String, String> job : allJobs) {
+                for (Map.Entry<String, String> element : job.entrySet())
+                    if (element.getValue().toLowerCase().contains(value.toLowerCase())) {
+                        jobs.add(job);
+                        break;
+                    }
             }
         }
         return jobs;
